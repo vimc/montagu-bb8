@@ -16,8 +16,7 @@ sudo ./bb8/setup_starport.sh /mnt/data/starport
 
 That's it. Note that this will create a `bb8` user and a symlink to the actual starport at `/var/lib/bb8/starport`
 
-# Support
-Steps taken to set up on support:
+Steps taken to set up support/prod:
 1. Clone this repo into the `montagu` directory
 ```
 git clone https://github.com/vimc/montagu-bb8 --recursive
