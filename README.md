@@ -26,4 +26,3 @@ git clone https://github.com/vimc/montagu-bb8 --recursive
 2. To use, enter the `bb8` dir and follow instructions in the README there (https://github.com/vimc/bb8). When
 prompted for a SOURCE_CONFIG_PATH, use the `config.json` file in this repo (so
 `../config.json` from the `bb8` dir).
-
