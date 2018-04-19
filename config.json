@@ -13,8 +13,8 @@
         },
         {
             "name": "vault",
-            "type": "directory",
-            "path": "/montagu/vault/storage"
+            "type": "named_volume",
+            "path": "montagu_vault_data"
         },
         {
             "name": "teamcity",
