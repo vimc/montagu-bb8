@@ -14,7 +14,7 @@
         {
             "name": "vault",
             "type": "named_volume",
-            "path": "montagu_vault_data"
+            "volume": "montagu_vault_data"
         },
         {
             "name": "teamcity",
