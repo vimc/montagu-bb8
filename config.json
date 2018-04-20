@@ -31,6 +31,13 @@
             "type": "named_volume",
             "volume": "montagu_db_annex_volume",
             "comment": "We have to stop the annex db before backing up this volume"
+        },
+        {
+            "name": "main_db_restore",
+            "type": "named_volume",
+            "volume": "montagu_db_1",
+            "backup": false,
+            "comment": "Barman takes care of backup via streaming replication"
         }
     ]
 }
