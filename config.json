@@ -35,9 +35,16 @@
         {
             "name": "main_db_restore",
             "type": "named_volume",
-            "volume": "montagu_db_1",
+            "volume": "montagu_db_volume",
             "backup": false,
             "comment": "Barman takes care of backup via streaming replication"
+        },
+        {
+            "name": "barman_to_starport",
+            "type": "named_volume",
+            "volume": "montagu_db_volume",
+            "restore": false,
+            "comment": "This takes the output of the barman nightly task and puts it in the starport, ready for main_db_restore to pick it up"
         }
     ]
 }
