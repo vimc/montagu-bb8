@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+PATH_BB8=$(command -v docker)
+if [ $? -ne 0 ]; then
+    echo "Error: bb8 is not installed."
+    exit 1
+fi
+
+PATH_BARMAN_MONTAGU=$(command -v barman-montagu)
+if [ $? -ne 0 ]; then
+    echo "Error: barman-montagu is not installed."
+    exit 1
+fi
+
+echo "Found bb8 at: $PATH_BB8"
+echo "Found barman-montagu at: $PATH_BARMAN_MONTAGU"
+
+DEST=/etc/cron.daily/barman-monatgu-nightly
+
+echo "Writing cron job to $DEST"
+cat <<EOF > "$DEST"
+#!/usr/bin/env bash
+set -e
+$PATH_BARMAN_MONTAGU update-nightly
+$PATH_BB8 main_db_restore
+EOF
+
+echo "You can test this by running"
+echo
+echo "    run-parts -v –-test /etc/cron.daily"
