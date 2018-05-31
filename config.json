@@ -13,8 +13,8 @@
         },
         {
             "name": "vault",
-            "type": "directory",
-            "path": "/montagu/vault/storage"
+            "type": "named_volume",
+            "volume": "montagu_vault_data"
         },
         {
             "name": "teamcity",
@@ -31,6 +31,20 @@
             "type": "named_volume",
             "volume": "montagu_db_annex_volume",
             "comment": "We have to stop the annex db before backing up this volume"
+        },
+        {
+            "name": "main_db_restore",
+            "type": "named_volume",
+            "volume": "montagu_db_volume",
+            "backup": false,
+            "comment": "Barman takes care of backup via streaming replication"
+        },
+        {
+            "name": "barman_to_starport",
+            "type": "named_volume",
+            "volume": "montagu_db_volume",
+            "restore": false,
+            "comment": "This takes the output of the barman nightly task and puts it in the starport, ready for main_db_restore to pick it up"
         }
     ]
 }
