@@ -30,7 +30,7 @@ git clone https://github.com/vimc/montagu-bb8 --recursive
 sudo ./setup ../config.json teamcity vault registry
 
 ```
-See [https://github.com/vimc/bb8#setup-leaf-machine](bb8 README) for more explanation.
+See https://github.com/vimc/bb8#setup-leaf-machine for more explanation.
 
 3. To upgrade, pull the latest changes and repeat step 2. 
 
