@@ -16,16 +16,36 @@ sudo ./bb8/setup_starport.sh /mnt/data/starport
 
 That's it. Note that this will create a `bb8` user and a symlink to the actual starport at `/var/lib/bb8/starport`
 
-Steps taken to set up support/prod:
-1. Clone this repo into the `montagu` directory
+### Support
+Steps taken to set up Support:
+
+1. Clone this repo into the `/montagu` directory
 ```
 git clone https://github.com/vimc/montagu-bb8 --recursive
 
 ```
 
-2. To use, enter the `bb8` dir and follow instructions in the README there (https://github.com/vimc/bb8). When
-prompted for a SOURCE_CONFIG_PATH, use the `config.json` file in this repo (so
-`../config.json` from the `bb8` dir).
+2. To use, enter the `bb8` dir and run
+```
+sudo ./setup ../config.json teamcity vault registry
+
+```
+See [https://github.com/vimc/bb8#setup-leaf-machine](bb8 README) for more explanation.
+
+3. To upgrade, pull the latest changes and repeat step 2. 
+
+### Production
+`bb8` is installed by the deploy task. 
+
+To upgrade `bb8`:
+
+1. Navigate to the `/montagu/deploy/montagu-bb8` directory and pull the latest version.
+
+2.  Run
+```
+sudo ./setup ../config.json main_db_restore orderly
+
+```
 
 ### Annex
 
@@ -36,3 +56,12 @@ On the annex, after successfully setting up `bb8` and `barman`, run
 ```
 
 which will configure a nightly job that will create a restorable copy of the montagu database and put it via bb8 into the starport.
+
+To upgrade `bb8`:
+
+1. Navigate to `/home/montagu/montagu-bb8` and pull the latest changes.
+
+2. Run 
+```
+sudo ./setup ../config.json barman_to_starport
+```
