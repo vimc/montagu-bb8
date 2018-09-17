@@ -19,7 +19,7 @@
         {
             "name": "teamcity",
             "type": "directory",
-            "path": "/montagu/teamcity"
+            "path": "/home/vagrant/montagu-ci/shared/restore"
         },
         {
             "name": "orderly",
