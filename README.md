@@ -19,31 +19,43 @@ That's it. Note that this will create a `bb8` user and a symlink to the actual s
 ### Support
 Steps taken to set up Support:
 
-1. Clone this repo into the `/montagu` directory
+1. As the `montagu` user, clone this repository into the `montagu` user home directory
+
 ```
 git clone https://github.com/vimc/montagu-bb8 --recursive
 
 ```
 
-2. To use, enter the `bb8` dir and run
-```
-sudo ./setup ../config.json teamcity vault registry
+2. Set up the global `bb8` link with
 
 ```
-See https://github.com/vimc/bb8#setup-leaf-machine for more explanation.
+sudo ./montagu-bb8/bb8/bb8_link_write
+```
+
+(this is the only step that requires root privileges)
+
+
+2. To use, from `montagu-bb8` run
+
+```
+./bb8/setup config.json teamcity vault registry
+```
+
+See https://github.com/vimc/bb8#setup-leaf-machine for more explanation.  If prompted, please configure scheduling as directed.
 
 3. To upgrade, pull the latest changes and repeat step 2. 
 
 ### Production
-`bb8` is installed by the deploy task. 
+
+`bb8` is no longer installed by the deploy task.
 
 To upgrade `bb8`:
 
-1. Navigate to the `/montagu/deploy/montagu-bb8` directory and pull the latest version.
+1. As the `montagu` user on production, navigate to `~/montagu-bb8` and pull the latest version (you may need to run `git submodule update`)
 
-2.  Run
+2.  From `montagu-bb8` run
 ```
-sudo ./setup ../config.json main_db_restore orderly
+./bb8/setup config.json main_db_restore orderly
 
 ```
 
