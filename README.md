@@ -5,17 +5,20 @@ bits. Essentially this is just the bb8 repo with a config file at the top level.
 ## Setup
 
 Steps taken to set up the annex
+
 1. Clone this repo anywhere
+
 ```
 git clone https://github.com/vimc/montagu-bb8 --recursive
 ```
 
-2. Run `./bb8/setup_starport.sh` as root, passing in the directory location of the starport as an argument.
+2. Run `./bb8/setup_starport` as root, passing in the directory location of the starport and the user to run `bb8` as
+
 ```
-sudo ./bb8/setup_starport.sh /mnt/data/starport
+sudo ./bb8/setup_starport /mnt/data/starport montagu
 ```
 
-That's it. Note that this will create a `bb8` user and a symlink to the actual starport at `/var/lib/bb8/starport`
+That's it. Note that this will create a symlink `~montagu/starport` to the actual starport at `/mnt/data/starport`
 
 ### Support
 
