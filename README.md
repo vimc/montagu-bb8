@@ -71,13 +71,7 @@ To upgrade `bb8`, as the `montagu` user:
 
 1. Navigate to `~/montagu-bb8` and pull the latest changes.
 
-2. Set up the global `bb8` link with
-
-```
-sudo ./montagu-bb8/bb8/bb8_link_write
-```
-
-3. From the `montagu-bb8` directory, configure `bb8` by running:
+2. From the `montagu-bb8` directory, configure `bb8` by running:
 
 ```
 ./bb8/setup config.json barman_to_starport
