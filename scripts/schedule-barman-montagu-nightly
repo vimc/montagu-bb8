@@ -12,8 +12,19 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+ROOT_BARMAN_MONTAGU=$(dirname $(readlink $PATH_BARMAN_MONTAGU))
+LOGDIR="$ROOT_BARMAN_MONTAGU/logs"
+LOGPATH="$ROOT_BARMAN_MONTAGU/logs/barman.log"
+
 echo "Found bb8 at: $PATH_BB8"
 echo "Found barman-montagu at: $PATH_BARMAN_MONTAGU"
+echo "Logging to: $LOGDIR"
+
+if [ ! -f $LOGPATH ]; then
+    mkdir -p $LOGDIR
+    touch $LOGPATH
+    chown -R montagu.montagu $LOGDIR
+fi
 
 DEST=/etc/cron.daily/barman-monatgu-nightly
 
@@ -21,10 +32,24 @@ echo "Writing cron job to $DEST"
 cat <<EOF > "$DEST"
 #!/usr/bin/env bash
 set -e
+exec &>> $LOGPATH
 $PATH_BARMAN_MONTAGU update-nightly
 $PATH_BB8 backup
 EOF
 
+echo "Creating logrotate configuration"
+cat <<EOF > /etc/logrotate.d/barman
+$LOGPATH {
+  rotate 3
+  weekly
+  compress
+  delaycompress
+  missingok
+  notifempty
+  create 644 montagu montagu
+}
+EOF
+
 echo "You can test this by running"
 echo
-echo "    run-parts -v –-test /etc/cron.daily"
+echo "    run-parts -v --test /etc/cron.daily"
